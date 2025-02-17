@@ -1,0 +1,242 @@
+@use "./parts/variables" as *;
+@use "./parts/mixins" as *;
+@use "./parts/grid" as *;
+
+body:not(.wp-admin) .wp-block-wp-app-our-team-block {
+
+	.our-team__container {
+		position: relative;
+
+		.our-team__col {
+
+			&:nth-child(1) {
+
+				@include media-breakpoint-down(xl) {
+					order: 2;
+				}
+
+			}
+
+			&:nth-child(2) {
+
+				@include media-breakpoint-down(xl) {
+					order: 1;
+				}
+
+			}
+		}
+
+		.our-team {
+
+			.our-team__title {
+				color: $color-black;
+				font-family: $font-family-base;
+				font-style: normal;
+				font-weight: 400;
+				font-size: px-to-rem(40px);
+				line-height: px-to-rem(45px);
+				margin-left: auto;
+				margin-right: auto;
+				width: 100%;
+				max-width: 100%;
+				margin-top: 50px;
+
+				@include media-breakpoint-up(lg) {
+					font-size: 64px;
+					line-height: 72px;
+				}
+
+				@include media-breakpoint-up(xl) {
+					margin-top: 100px;
+				}
+			}
+
+			.our-team__desc {
+				color: $color-black;
+				font-family: $font-family-secondary;
+				font-style: normal;
+				font-weight: 400;
+				font-size: px-to-rem(14px);
+				line-height: px-to-rem(16px);
+				margin-left: auto;
+				margin-right: auto;
+				width: 100%;
+				max-width: 100%;
+				margin-top: 16px;
+
+				@include media-breakpoint-up(lg) {
+					font-size: 16px;
+					line-height: 18px;
+					margin-top: 33px;
+				}
+			}
+
+			.our-team__list {
+				display: flex;
+				justify-content: start;
+				flex-wrap: wrap;
+				margin: 50px auto 0 auto;
+				width: 315px;
+
+				@include media-breakpoint-up(lg) {
+					width: 525px;
+				}
+
+				.our-team__item {
+					position: relative;
+					clip-path: polygon(50% 0%, 100.5% 30%, 100.5% 71%, 50% 100%, 0% 71%, 0% 30%);
+					overflow: hidden;
+					cursor: pointer;
+					width: 126px;
+					height: 138px;
+					display: block;
+					text-decoration: none;
+
+					@include media-breakpoint-up(lg) {
+						width: 210px;
+						height: 230px;
+					}
+
+					&:nth-child(4n+3) {
+						margin-left: 63px;
+
+						@include media-breakpoint-up(lg) {
+							margin-left: 105px;
+						}
+					}
+
+					&:nth-child(4n+1),
+					&:nth-child(4n+2),
+					&:nth-child(4n+3),
+					&:nth-child(4n+4) {
+						margin-top: -42px;
+
+						@include media-breakpoint-up(lg) {
+							margin-top: -69px;
+						}
+					}
+
+					&:nth-child(1),
+					&:nth-child(2) {
+						margin-top: 0;
+
+						@include media-breakpoint-up(lg) {
+							margin-top: 0;
+						}
+					}
+
+					.our-team__image {
+						display: block;
+
+						&::after {
+							content: "";
+							position: absolute;
+							left: 0;
+							bottom: 0;
+							width: 100%;
+							height: 80px;
+							background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10.28%, $color-black 100%);
+							z-index: 1;
+							opacity: 1;
+							transition: opacity 0.5s;
+							display: block;
+
+							@include media-breakpoint-up(lg) {
+								background: rgb(255, 255, 255, 0);
+								opacity: 0;
+								height: 107px;
+							}
+						}
+
+						img {
+							width: 100%;
+							height: 100%;
+							min-width: 126px;
+							min-height: 138px;
+							object-fit: cover;
+
+							@include media-breakpoint-up(lg) {
+								min-width: 210px;
+								min-height: 230px;
+								filter: grayscale(100%);
+								transition: transform 0.5s, filter 0.5s;
+							}
+						}
+					}
+
+					.our-team__person {
+						position: absolute;
+						display: block;
+						text-align: center;
+						width: 100%;
+						padding: 0 10%;
+						z-index: 2;
+						transition: 0.5s;
+						bottom: 22px;
+
+						@include media-breakpoint-up(lg) {
+							bottom: 36px;
+							opacity: 0;
+							visibility: hidden;
+						}
+
+						.our-team__name {
+							display: block;
+							font-family: $font-family-secondary;
+							font-style: normal;
+							font-weight: 500;
+							color: $color-white;
+							margin-bottom: 5px;
+							font-size: 12px;
+							line-height: 14px;
+
+							@include media-breakpoint-up(lg) {
+								font-size: 16px;
+								line-height: 19px;
+							}
+						}
+
+						.our-team__position {
+							display: block;
+							font-family: $font-family-secondary;
+							font-style: normal;
+							font-weight: 400;
+							color: $color-white;
+							font-size: 10px;
+							line-height: 12px;
+
+							@include media-breakpoint-up(lg) {
+								font-size: 12px;
+								line-height: 15px;
+							}
+						}
+					}
+
+					&:hover {
+
+						.our-team__image {
+
+							&::after {
+								background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10.28%, $color-black 100%);
+								opacity: 1;
+							}
+
+							img {
+								transform: scale(1.1);
+								filter: grayscale(0%);
+								transition: transform 0.5s, filter 0.5s;
+							}
+						}
+
+						.our-team__person {
+							transition: 0.5s;
+							opacity: 1;
+							visibility: visible;
+						}
+
+					}
+				}
+			}
+		}
+	}
+}

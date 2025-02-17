@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wp-app/our-team-block",
+  "version": "1.0.0",
+  "title": "Our Team",
+  "category": "widgets",
+  "icon": "groups",
+  "description": "Our Team adds team members to a page.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "textdomain": "our-team-block",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 2
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+body:not(.wp-admin) {
+
+	.our-team__container {
+		width: 100%;
+		box-sizing: border-box;
+
+		.our-team__row {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 15px;
+
+			@include media-breakpoint-up(xl) {
+				flex-wrap: nowrap;
+			}
+
+			.our-team__col {
+				width: 100%;
+
+				@include media-breakpoint-up(xl) {
+					width: 50%;
+				}
+			}
+		}
+	}
+
+	.our-team__columns-1 {
+
+		.our-team__container {
+
+			.our-team {
+
+				.our-team__row {
+					flex-wrap: wrap;
+
+					.our-team__col {
+						width: 100%;
+
+						@include media-breakpoint-up(xl) {
+							width: 100%;
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+}

@@ -1,0 +1,23 @@
+$font-family-base: "Arial", sans-serif !default;
+$font-family-secondary: "Verdana", "Tahoma", sans-serif !default;
+
+$color-white: #fff;
+$color-black: #000;
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+) !default;
+
+$container-max-widths: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1400px
+) !default;
