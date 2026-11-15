@@ -76,7 +76,9 @@ export default function Edit( { attributes, setAttributes } ) {
 			) }
 			<div
 				{ ...useBlockProps( {
-					className: 'our-team__item',
+					className: imageUrl
+						? 'our-team__item'
+						: 'our-team__item our-team__item--no-image',
 				} ) }
 			>
 				<RichText

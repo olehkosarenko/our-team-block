@@ -97,6 +97,14 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						height: 230px;
 					}
 
+					&.our-team__item--no-image {
+						background-color: $color-placeholder;
+
+						.our-team__person {
+							opacity: 1;
+						}
+					}
+
 					&:nth-child(4n+3) {
 						margin-left: 63px;
 

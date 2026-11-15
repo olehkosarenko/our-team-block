@@ -13,7 +13,9 @@ export default function Save( { attributes } ) {
 	return (
 		<div
 			{ ...useBlockProps.save( {
-				className: 'our-team__item',
+				className: imageUrl
+					? 'our-team__item'
+					: 'our-team__item our-team__item--no-image',
 			} ) }
 		>
 			<Wrapper
