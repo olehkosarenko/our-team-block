@@ -4,6 +4,14 @@
 	"description": "Our Team Block is a custom Gutenberg block created for adding team members to a page.",
 	"author": "Oleh Kosarenko",
 	"license": "GPL-2.0-or-later",
+	"homepage": "https://github.com/olehkosarenko/our-team-block#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/olehkosarenko/our-team-block.git"
+	},
+	"bugs": {
+		"url": "https://github.com/olehkosarenko/our-team-block/issues"
+	},
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
