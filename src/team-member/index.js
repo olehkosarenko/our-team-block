@@ -3,14 +3,14 @@ import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 import Save from './save';
 
-registerBlockType('wp-app/our-team-block-team-member', {
-	title: __('Team Member', 'our-team-block'),
+registerBlockType( 'wp-app/our-team-block-team-member', {
+	title: __( 'Team Member', 'our-team-block' ),
 	description: __(
 		'Our Team Member: Image, Name and Position',
 		'our-team-block'
 	),
 	icon: 'admin-users',
-	parent: ['wp-app/our-team-block-team-list'],
+	parent: [ 'wp-app/our-team-block-team-list' ],
 	supports: {
 		html: false,
 		reusable: false,
@@ -51,4 +51,4 @@ registerBlockType('wp-app/our-team-block-team-member', {
 	},
 	edit: Edit,
 	save: Save,
-});
+} );

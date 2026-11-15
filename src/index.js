@@ -7,7 +7,7 @@ import Edit from './edit';
 import Save from './save';
 import './scss/style.scss';
 
-registerBlockType('wp-app/our-team-block', {
+registerBlockType( 'wp-app/our-team-block', {
 	edit: Edit,
 	save: Save,
-});
+} );
