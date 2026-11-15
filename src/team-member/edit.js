@@ -94,9 +94,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							}` }
 						>
 							<img
+								className={
+									imageId
+										? `wp-image-${ imageId }`
+										: undefined
+								}
 								src={ imageUrl }
 								alt={ imageAlt }
-								id={ imageId }
 							/>
 							{ isBlobURL( imageUrl ) && <Spinner /> }
 						</div>
