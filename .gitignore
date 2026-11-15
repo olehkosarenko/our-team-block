@@ -31,3 +31,9 @@ node_modules/
 
 # Build output, created by `npm run build`
 /build/
+
+# Composer dependencies
+/vendor/
+
+# PHPCS cache
+/.phpcs.cache

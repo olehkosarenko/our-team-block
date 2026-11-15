@@ -20,6 +20,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'init', 'wp_app_our_team_block_init' );
+
+/**
+ * Register the Our Team block from its block.json in the build directory
+ *
+ * @return void
+ */
 function wp_app_our_team_block_init() {
 	register_block_type( __DIR__ . '/build' );
 }
