@@ -52,5 +52,4 @@ Save.propTypes = {
 		imageUrl: PropTypes.string,
 		imageAlt: PropTypes.string,
 	} ),
-	setAttributes: PropTypes.func.isRequired,
 };

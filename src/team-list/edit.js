@@ -10,8 +10,6 @@ export default function Edit() {
 			<InnerBlocks
 				allowedBlocks={ [ 'wp-app/our-team-block-team-member' ] }
 				orientation="horizontal"
-				minItems={ 2 }
-				maxItems={ 4 }
 			/>
 		</div>
 	);
