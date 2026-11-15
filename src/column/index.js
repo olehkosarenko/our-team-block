@@ -12,12 +12,6 @@ registerBlockType( 'wp-app/our-team-block-column', {
 		html: false,
 		reusable: false,
 	},
-	attributes: {
-		columns: {
-			type: 'number',
-			default: 2,
-		},
-	},
 	edit: Edit,
 	save: Save,
 } );
