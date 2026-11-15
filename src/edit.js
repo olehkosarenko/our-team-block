@@ -38,7 +38,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<div
 			{ ...useBlockProps( {
-				className: `our-team__column-${ columns }`,
+				className: `our-team__columns-${ columns }`,
 			} ) }
 		>
 			<div className="our-team__container">
