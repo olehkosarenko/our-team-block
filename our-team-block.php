@@ -20,6 +20,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_action( 'init', 'wp_app_our_team_block_init' );
+
+/**
+ * Register the Our Team block from its block.json in the build directory
+ *
+ * When the block has not been built yet, show administrators how to build it instead.
+ *
+ * @return void
+ */
 function wp_app_our_team_block_init() {
+	if ( ! is_readable( __DIR__ . '/build/block.json' ) ) {
+		add_action( 'admin_notices', 'wp_app_our_team_block_build_notice' );
+
+		return;
+	}
+
 	register_block_type( __DIR__ . '/build' );
+}
+
+/**
+ * Print an admin notice that the block has to be built before it can be used
+ *
+ * @return void
+ */
+function wp_app_our_team_block_build_notice() {
+	if ( ! current_user_can( 'activate_plugins' ) ) {
+		return;
+	}
+
+	printf(
+		'<div class="notice notice-warning"><p>%1$s <code>%2$s</code></p></div>',
+		esc_html__( 'The Our Team block is not available because it is not built. Run this command in the plugin folder:', 'our-team-block' ),
+		esc_html( 'npm ci && npm run build' )
+	);
 }

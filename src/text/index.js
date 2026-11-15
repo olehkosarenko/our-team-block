@@ -3,11 +3,11 @@ import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 import Save from './save';
 
-registerBlockType('wp-app/our-team-block-text', {
-	title: __('Text', 'our-team-block'),
-	description: __('Our Team Text: Title and Description', 'our-team-block'),
+registerBlockType( 'wp-app/our-team-block-text', {
+	title: __( 'Text', 'our-team-block' ),
+	description: __( 'Our Team Text: Title and Description', 'our-team-block' ),
 	icon: 'text',
-	parent: ['wp-app/our-team-block-column'],
+	parent: [ 'wp-app/our-team-block-column' ],
 	supports: {
 		html: false,
 		reusable: false,
@@ -26,4 +26,4 @@ registerBlockType('wp-app/our-team-block-text', {
 	},
 	edit: Edit,
 	save: Save,
-});
+} );

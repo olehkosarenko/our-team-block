@@ -1,14 +1,14 @@
 import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
 import PropTypes from 'prop-types';
 
-export default function Save({ attributes }) {
+export default function Save( { attributes } ) {
 	const { columns } = attributes;
 
 	return (
 		<div
-			{...useBlockProps.save({
-				className: `our-team__columns-${columns}`,
-			})}
+			{ ...useBlockProps.save( {
+				className: `our-team__columns-${ columns }`,
+			} ) }
 		>
 			<div className="our-team__container">
 				<div className="our-team">
@@ -22,7 +22,7 @@ export default function Save({ attributes }) {
 }
 
 Save.propTypes = {
-	attributes: PropTypes.shape({
+	attributes: PropTypes.shape( {
 		columns: PropTypes.number,
-	}),
+	} ),
 };

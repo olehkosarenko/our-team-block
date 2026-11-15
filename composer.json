@@ -1,0 +1,37 @@
+{
+    "name": "wpapp/our-team-block",
+    "description": "Our Team Block is a custom Gutenberg block created for adding team members to a page.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Oleh Kosarenko",
+            "homepage": "https://github.com/olehkosarenko"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/olehkosarenko/our-team-block",
+        "issues": "https://github.com/olehkosarenko/our-team-block/issues"
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.1",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "automattic/vipwpcs": "^3.1"
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "lint:fix": "phpcbf"
+    },
+    "scripts-descriptions": {
+        "lint": "Check PHP code against the coding standards.",
+        "lint:fix": "Fix coding standard violations automatically."
+    }
+}

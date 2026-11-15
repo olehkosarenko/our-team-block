@@ -1,5 +1,7 @@
 # Our Team Block
 
+[![Lint](https://github.com/olehkosarenko/our-team-block/actions/workflows/lint.yml/badge.svg)](https://github.com/olehkosarenko/our-team-block/actions/workflows/lint.yml)
+
 **Our Team Block** is a WordPress plugin that adds an **Our Team** block to the block editor. The block shows a title, a short description and a list of team members, each with a photo, a name, a position and a link.
 
 ## Block structure
@@ -20,11 +22,14 @@ On the site, team members are shown as hexagons. From the `lg` breakpoint (992px
 - WordPress 6.6 or later
 - PHP 7.4 or later
 
-To build the block you also need Node.js and npm.
+To install from source you also need:
+
+- Node.js 26 LTS (see `.nvmrc`) and npm, to build the block
+- [Composer](https://getcomposer.org/), only for the PHP coding standards checks
 
 ## Installation
 
-The `build/` directory is not committed, so build the block after cloning:
+The `build/` directory is not committed, so build the block after cloning. Until it is built, the block is not registered and administrators see a notice with the command to run.
 
 ```sh
 cd wp-content/plugins
@@ -38,9 +43,14 @@ Then activate **Our Team Block** in **Plugins** and add the **Our Team** block t
 
 ## Development
 
-The block is built with [`@wordpress/scripts`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/). The source is in `src/`, the build goes to `build/`.
+### Block
+
+The block is built with [`@wordpress/scripts`](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/). The source is in `src/`, the build goes to `build/`. React and the `@wordpress/*` packages come from WordPress, they are not bundled.
+
+Run `nvm use` to switch to the Node.js version from `.nvmrc`.
 
 ```sh
+nvm use
 npm ci
 npm run build      # production build
 npm start          # rebuild on every change
@@ -50,6 +60,18 @@ npm run format     # format the code with the WordPress Prettier config
 ```
 
 The styles are written in SCSS: `src/scss/style.scss` is loaded on the site and in the editor, `src/scss/editor.scss` only in the editor.
+
+### PHP coding standards
+
+The PHP code follows the [WordPress Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/), the WordPress VIP coding standards (WordPress-VIP-Go) and is checked for PHP version compatibility. The rules are in `phpcs.xml.dist`.
+
+```sh
+composer install
+composer lint       # check the code with PHPCS
+composer lint:fix   # fix what can be fixed automatically with PHPCBF
+```
+
+GitHub Actions runs PHPCS, the linters and the build on every pull request and on pushes to `main`.
 
 ## License
 
