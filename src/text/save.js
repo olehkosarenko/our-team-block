@@ -1,6 +1,5 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import PropTypes from 'prop-types';
-import Edit from './edit';
 
 export default function Save( { attributes } ) {
 	const { title, description } = attributes;
@@ -21,7 +20,7 @@ export default function Save( { attributes } ) {
 	);
 }
 
-Edit.propTypes = {
+Save.propTypes = {
 	attributes: PropTypes.shape( {
 		title: PropTypes.string,
 		description: PropTypes.string,
