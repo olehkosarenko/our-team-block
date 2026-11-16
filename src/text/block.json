@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-app/our-team-block-text",
+	"version": "0.1.0",
+	"title": "Text",
+	"parent": [ "wp-app/our-team-block-column" ],
+	"icon": "text",
+	"description": "Our Team Text: Title and Description",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"textdomain": "our-team-block",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"source": "html",
+			"selector": "h2"
+		},
+		"description": {
+			"type": "string",
+			"source": "html",
+			"selector": "p"
+		}
+	}
+}

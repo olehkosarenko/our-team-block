@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-app/our-team-block-team-list",
+	"version": "0.1.0",
+	"title": "Team List",
+	"parent": [ "wp-app/our-team-block-column" ],
+	"icon": "admin-users",
+	"description": "Our Team List: Adds a team member to the team list.",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"textdomain": "our-team-block"
+}
