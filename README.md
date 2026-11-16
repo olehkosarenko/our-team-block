@@ -15,7 +15,9 @@
 
 A new block starts with two columns: the first one holds a Text block, the second one a Team List with four team members. The **Columns** setting in the block sidebar switches the layout on the site between one and two columns.
 
-On the site, team members are shown as hexagons. From the `lg` breakpoint (992px) the photos are grayscale, and the name and position appear on hover.
+To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel.
+
+On the site, team members are shown as hexagons. From the `lg` breakpoint (992px) the photos are grayscale, and the name and position appear on hover and on keyboard focus. A member without a photo is shown as a grey card with the name and position always visible.
 
 ## Requirements
 
