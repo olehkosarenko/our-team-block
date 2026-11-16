@@ -31,6 +31,16 @@ To install from source you also need:
 
 ## Installation
 
+### From a release
+
+1. Download `our-team-block.zip` from the [Releases](https://github.com/olehkosarenko/our-team-block/releases) page.
+2. In WordPress, go to **Plugins > Add New > Upload Plugin**, choose the zip and install it.
+3. Activate **Our Team Block** in **Plugins**.
+
+The zip already contains the built block.
+
+### From source
+
 The `build/` directory is not committed, so build the block after cloning. Until it is built, the block is not registered and administrators see a notice with the command to run.
 
 ```sh
@@ -74,6 +84,10 @@ composer lint:fix   # fix what can be fixed automatically with PHPCBF
 ```
 
 GitHub Actions runs PHPCS, the linters and the build on every pull request and on pushes to `main`.
+
+### Releases
+
+Pushing a version tag such as `v1.0.0` builds `our-team-block.zip` and publishes it as a GitHub release, with the notes from [CHANGELOG.md](CHANGELOG.md). The tag must match the version in `our-team-block.php`, `readme.txt`, `package.json` and the `block.json` files.
 
 ## License
 
