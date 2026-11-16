@@ -22,12 +22,14 @@
 		}
 	}
 
+	// In the editor the team members sit in an extra block list element, so it
+	// gets the same flex layout as the list on the site.
 	.our-team__list .block-editor-inner-blocks .block-editor-block-list__layout {
 		width: 100%;
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: start;
 
 		> .block-editor-block-list__block {
 
