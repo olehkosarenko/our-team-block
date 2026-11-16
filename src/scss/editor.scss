@@ -22,12 +22,14 @@
 		}
 	}
 
+	// In the editor the team members sit in an extra block list element, so it
+	// gets the same flex layout as the list on the site.
 	.our-team__list .block-editor-inner-blocks .block-editor-block-list__layout {
 		width: 100%;
 		margin: 0;
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: start;
 
 		> .block-editor-block-list__block {
 
@@ -60,14 +62,11 @@
 }
 
 // In the editor the name and the position are always visible so they can be
-// edited in place. The editor canvas is an iframe, so the site styles apply in
-// it as well; the html element makes these rules win over the site ones.
-html body.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
+// edited in place. The editor-styles-wrapper class makes these rules win over
+// the site ones.
+.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
 
-	// The next row of the honeycomb covers the lower third of a card, so the
-	// text sits above it.
 	.our-team__person {
-		bottom: 32%;
 		opacity: 1;
 		visibility: visible;
 	}
@@ -91,7 +90,6 @@ html body.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__conta
 	.our-team__image {
 
 		&::after {
-			height: 75%;
 			opacity: 1;
 			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $color-black 100%);
 		}
@@ -99,5 +97,22 @@ html body.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__conta
 		img {
 			filter: none;
 		}
+	}
+
+	// No zoom of the photo while the name or position is being typed.
+	&:focus-within .our-team__image img {
+		transform: none;
+	}
+
+	// The hexagon cuts off the editor's selection outline, so the selected
+	// card gets a frame in the admin theme color instead.
+	&.is-selected::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		z-index: 3;
+		background: var(--wp-admin-theme-color, #3858e9);
+		clip-path: polygon(evenodd, 50% 0%, 100% 30%, 100% 71%, 50% 100%, 0% 71%, 0% 30%, 50% 0%, 50% 3%, 3% 31.5%, 3% 69.5%, 50% 97%, 97% 69.5%, 97% 31.5%, 50% 3%);
+		pointer-events: none;
 	}
 }
