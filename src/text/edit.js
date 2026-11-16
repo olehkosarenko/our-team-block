@@ -9,7 +9,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		<div { ...useBlockProps() }>
 			<RichText
 				tagName="h2"
-				className="our-team__title our-team__input"
+				className="our-team__title"
 				allowedFormats={ [] }
 				value={ title }
 				placeholder={ __( 'Your Title', 'our-team-block' ) }
@@ -17,7 +17,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			/>
 			<RichText
 				tagName="p"
-				className="our-team__desc our-team__input"
+				className="our-team__desc"
 				allowedFormats={ [] }
 				value={ description }
 				placeholder={ __( 'Your Description', 'our-team-block' ) }

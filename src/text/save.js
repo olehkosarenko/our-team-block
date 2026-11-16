@@ -6,16 +6,20 @@ export default function Save( { attributes } ) {
 
 	return (
 		<div { ...useBlockProps.save() }>
-			<RichText.Content
-				tagName="h2"
-				className="our-team__title"
-				value={ title }
-			/>
-			<RichText.Content
-				tagName="p"
-				className="our-team__desc"
-				value={ description }
-			/>
+			{ title && (
+				<RichText.Content
+					tagName="h2"
+					className="our-team__title"
+					value={ title }
+				/>
+			) }
+			{ description && (
+				<RichText.Content
+					tagName="p"
+					className="our-team__desc"
+					value={ description }
+				/>
+			) }
 		</div>
 	);
 }

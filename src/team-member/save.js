@@ -3,24 +3,37 @@ import PropTypes from 'prop-types';
 
 export default function Save( { attributes } ) {
 	const { url, name, position, imageId, imageUrl, imageAlt } = attributes;
-	const hasNotUrlAndName = ! url && ! name;
-	const hasNameOrPosition = name || position;
 
-	if ( hasNotUrlAndName ) {
+	if ( ! url && ! name && ! position && ! imageUrl ) {
 		return null;
 	}
+
+	const Wrapper = url ? 'a' : 'div';
 
 	return (
 		<div
 			{ ...useBlockProps.save( {
-				className: 'our-team__item',
+				className: imageUrl
+					? 'our-team__item'
+					: 'our-team__item our-team__item--no-image',
 			} ) }
 		>
-			<a href={ url } className="our-team__url">
-				<span className="our-team__image">
-					<img id={ imageId } src={ imageUrl } alt={ imageAlt } />
-				</span>
-				{ hasNameOrPosition && (
+			<Wrapper
+				href={ url || undefined }
+				className={ url ? 'our-team__url' : 'our-team__card' }
+			>
+				{ imageUrl && (
+					<span className="our-team__image">
+						<img
+							className={
+								imageId ? `wp-image-${ imageId }` : undefined
+							}
+							src={ imageUrl }
+							alt={ imageAlt }
+						/>
+					</span>
+				) }
+				{ ( name || position ) && (
 					<span className="our-team__person">
 						{ name && (
 							<RichText.Content
@@ -38,7 +51,7 @@ export default function Save( { attributes } ) {
 						) }
 					</span>
 				) }
-			</a>
+			</Wrapper>
 		</div>
 	);
 }

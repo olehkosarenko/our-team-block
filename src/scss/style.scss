@@ -97,6 +97,14 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						height: 230px;
 					}
 
+					&.our-team__item--no-image {
+						background-color: $color-placeholder;
+
+						.our-team__person {
+							opacity: 1;
+						}
+					}
+
 					&:nth-child(4n+3) {
 						margin-left: 63px;
 
@@ -170,6 +178,7 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						text-align: center;
 						width: 100%;
 						padding: 0 10%;
+						box-sizing: border-box;
 						z-index: 2;
 						transition: 0.5s;
 						bottom: 22px;
@@ -177,7 +186,6 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						@include media-breakpoint-up(lg) {
 							bottom: 36px;
 							opacity: 0;
-							visibility: hidden;
 						}
 
 						.our-team__name {
@@ -212,7 +220,8 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						}
 					}
 
-					&:hover {
+					&:hover,
+					&:focus-within {
 
 						.our-team__image {
 
@@ -231,12 +240,18 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						.our-team__person {
 							transition: 0.5s;
 							opacity: 1;
-							visibility: visible;
 						}
 
 					}
 				}
 			}
 		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	body:not(.wp-admin) .wp-block-wp-app-our-team-block .our-team__item * {
+		transition: none !important;
 	}
 }

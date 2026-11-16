@@ -1,41 +1,11 @@
 @use "./parts/variables" as *;
 @use "./parts/mixins" as *;
 
-$box-border: 1px dotted #f00;
-
 .wp-block-wp-app-our-team-block {
-	border: $box-border;
-	padding: 0 20px;
 	box-sizing: border-box;
-
-	.block-editor-inner-blocks {
-
-		> .block-editor-block-list__layout {
-
-			> .block-editor-block-list__block {
-
-				.block-editor-block-list__block[data-type="wp-app/our-team-block-column"] {
-					border: $box-border;
-					padding: 20px;
-				}
-			}
-		}
-	}
-
-	.our-team__input {
-		display: block;
-		width: 100%;
-		margin-bottom: 10px;
-		padding: 10px;
-		box-sizing: border-box;
-		border: 1px solid #8c8f94;
-		background-color: #fff;
-		color: #2c3338;
-	}
 
 	.our-team__image {
 		display: block;
-		margin-bottom: 10px;
 		position: relative;
 
 		&.is-loading img {
@@ -62,16 +32,7 @@ $box-border: 1px dotted #f00;
 		> .block-editor-block-list__block {
 
 			&[data-type="wp-app/our-team-block-team-member"] {
-				overflow: inherit;
-				width: 100%;
-				border: $box-border;
-				padding: 10px;
-				margin-bottom: 20px;
 				box-sizing: border-box;
-
-				@include media-breakpoint-up(xl) {
-					width: calc(50% - 30px);
-				}
 			}
 		}
 	}
@@ -94,6 +55,49 @@ $box-border: 1px dotted #f00;
 					width: 100%;
 				}
 			}
+		}
+	}
+}
+
+// In the editor the name and the position are always visible so they can be
+// edited in place. The editor canvas is an iframe, so the site styles apply in
+// it as well; the html element makes these rules win over the site ones.
+html body.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
+
+	// The next row of the honeycomb covers the lower third of a card, so the
+	// text sits above it.
+	.our-team__person {
+		bottom: 32%;
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.our-team__name,
+	.our-team__position {
+		min-height: 1em;
+		border: 0;
+		background: transparent;
+		color: $color-white;
+		text-align: center;
+		box-shadow: none;
+		outline-offset: 2px;
+
+		&[data-rich-text-placeholder]::after {
+			color: $color-placeholder-text;
+			opacity: 1;
+		}
+	}
+
+	.our-team__image {
+
+		&::after {
+			height: 75%;
+			opacity: 1;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $color-black 100%);
+		}
+
+		img {
+			filter: none;
 		}
 	}
 }

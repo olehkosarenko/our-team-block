@@ -4,6 +4,13 @@ $font-family-secondary: "Verdana", "Tahoma", sans-serif !default;
 $color-white: #fff;
 $color-black: #000;
 
+// Background of a team member without a photo.
+// White text on it has a contrast ratio of 7:1.
+$color-placeholder: #595959;
+
+// Placeholder text of the name and position fields in the editor.
+$color-placeholder-text: #e0e0e0;
+
 $grid-breakpoints: (
 	xs: 0,
 	sm: 576px,

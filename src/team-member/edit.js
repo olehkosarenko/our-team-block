@@ -1,20 +1,31 @@
 import {
 	useBlockProps,
 	RichText,
-	MediaPlaceholder,
 	BlockControls,
 	MediaReplaceFlow,
+	MediaUpload,
+	MediaUploadCheck,
 	InspectorControls,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { decodeEntities } from '@wordpress/html-entities';
+import { escapeEditableHTML } from '@wordpress/escape-html';
 import { isBlobURL } from '@wordpress/blob';
 import {
+	Button,
 	Spinner,
 	ToolbarButton,
 	PanelBody,
 	TextControl,
 } from '@wordpress/components';
 import PropTypes from 'prop-types';
+
+// Name and position are saved as HTML by the RichText fields on the card.
+// The sidebar fields show them as plain text and store them escaped, so both
+// ways of editing save the same markup.
+const toText = ( html ) => decodeEntities( html || '' );
+const toHtml = ( text ) => escapeEditableHTML( text );
+const hasTags = ( html ) => /<[a-z][^>]*>/i.test( html || '' );
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { url, name, position, imageId, imageUrl, imageAlt } = attributes;
@@ -32,96 +43,173 @@ export default function Edit( { attributes, setAttributes } ) {
 			imageAlt: val.alt,
 		} );
 	};
+	const onRemove = () => {
+		setAttributes( {
+			imageId: undefined,
+			imageUrl: undefined,
+			imageAlt: '',
+		} );
+	};
 
 	return (
 		<>
-			{ imageUrl && ! isBlobURL( imageUrl ) && (
-				<InspectorControls>
-					<PanelBody
-						title={ __( 'Image Settings', 'our-team-block' ) }
-					>
+			<InspectorControls>
+				<PanelBody title={ __( 'Photo', 'our-team-block' ) }>
+					{ imageUrl && (
+						<img
+							className="our-team__photo-preview"
+							src={ imageUrl }
+							alt=""
+						/>
+					) }
+					<MediaUploadCheck>
+						<div className="our-team__photo-actions">
+							<MediaUpload
+								onSelect={ onSelect }
+								allowedTypes={ [ 'image' ] }
+								value={ imageId }
+								render={ ( { open } ) => (
+									<Button
+										variant="secondary"
+										onClick={ open }
+									>
+										{ imageUrl
+											? __( 'Replace', 'our-team-block' )
+											: __(
+													'Choose photo',
+													'our-team-block'
+												) }
+									</Button>
+								) }
+							/>
+							{ imageUrl && (
+								<Button
+									variant="secondary"
+									isDestructive
+									onClick={ onRemove }
+								>
+									{ __( 'Remove', 'our-team-block' ) }
+								</Button>
+							) }
+						</div>
+					</MediaUploadCheck>
+					{ imageUrl && ! isBlobURL( imageUrl ) && (
 						<TextControl
-							label={ __( 'Alt', 'our-team-block' ) }
+							label={ __( 'Alt text', 'our-team-block' ) }
 							value={ imageAlt }
 							onChange={ ( val ) =>
 								setAttributes( { imageAlt: val } )
 							}
 						/>
-					</PanelBody>
-				</InspectorControls>
-			) }
-			{ imageUrl && (
-				<BlockControls>
-					<MediaReplaceFlow
-						name={ __( 'Replace Image', 'our-team-block' ) }
-						onSelect={ onSelect }
-						onSelectURL={ onSelectURL }
-						accept="image/*"
-						allowedTypes={ [ 'image' ] }
-						mediaId={ imageId }
-						mediaURL={ imageUrl }
-					/>
-					<ToolbarButton
-						onClick={ () =>
-							setAttributes( {
-								imageId: undefined,
-								imageUrl: undefined,
-								imageAlt: '',
-							} )
+					) }
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Name and position', 'our-team-block' ) }
+				>
+					<TextControl
+						label={ __( 'Name', 'our-team-block' ) }
+						value={ toText( name ) }
+						disabled={ hasTags( name ) }
+						help={
+							hasTags( name )
+								? __(
+										'Contains formatting, edit it on the card.',
+										'our-team-block'
+									)
+								: undefined
 						}
-					>
-						{ __( 'Remove Image', 'our-team-block' ) }
+						onChange={ ( val ) =>
+							setAttributes( { name: toHtml( val ) } )
+						}
+					/>
+					<TextControl
+						label={ __( 'Position', 'our-team-block' ) }
+						value={ toText( position ) }
+						disabled={ hasTags( position ) }
+						help={
+							hasTags( position )
+								? __(
+										'Contains formatting, edit it on the card.',
+										'our-team-block'
+									)
+								: undefined
+						}
+						onChange={ ( val ) =>
+							setAttributes( { position: toHtml( val ) } )
+						}
+					/>
+				</PanelBody>
+				<PanelBody title={ __( 'Link', 'our-team-block' ) }>
+					<TextControl
+						type="url"
+						label={ __( 'Link URL', 'our-team-block' ) }
+						help={ __(
+							'Leave empty to show the team member without a link.',
+							'our-team-block'
+						) }
+						value={ url || '' }
+						onChange={ ( val ) =>
+							setAttributes( { url: val.trim() || undefined } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
+			<BlockControls group="other">
+				<MediaReplaceFlow
+					name={
+						imageUrl
+							? __( 'Replace', 'our-team-block' )
+							: __( 'Add photo', 'our-team-block' )
+					}
+					onSelect={ onSelect }
+					onSelectURL={ onSelectURL }
+					accept="image/*"
+					allowedTypes={ [ 'image' ] }
+					mediaId={ imageId }
+					mediaURL={ imageUrl }
+				/>
+				{ imageUrl && (
+					<ToolbarButton onClick={ onRemove }>
+						{ __( 'Remove', 'our-team-block' ) }
 					</ToolbarButton>
-				</BlockControls>
-			) }
+				) }
+			</BlockControls>
 			<div
 				{ ...useBlockProps( {
-					className: 'our-team__item',
+					className: imageUrl
+						? 'our-team__item'
+						: 'our-team__item our-team__item--no-image',
 				} ) }
 			>
-				<RichText
-					value={ url }
-					allowedFormats={ [] }
-					className="our-team__url our-team__input"
-					onChange={ ( val ) => setAttributes( { url: val } ) }
-					placeholder={ __( 'URL', 'our-team-block' ) }
-				/>
-				<span className="our-team__image">
-					{ imageUrl && (
-						<div
-							className={ `image ${
-								isBlobURL( imageUrl ) ? 'is-loading' : 'loaded'
-							}` }
-						>
-							<img
-								src={ imageUrl }
-								alt={ imageAlt }
-								id={ imageId }
-							/>
-							{ isBlobURL( imageUrl ) && <Spinner /> }
-						</div>
-					) }
-					<MediaPlaceholder
-						onSelect={ onSelect }
-						onSelectURL={ onSelectURL }
-						accept="image/*"
-						allowedTypes={ [ 'image' ] }
-						disableMediaButtons={ imageUrl }
-					/>
-				</span>
+				{ imageUrl && (
+					<span
+						className={ `our-team__image ${
+							isBlobURL( imageUrl ) ? 'is-loading' : ''
+						}` }
+					>
+						<img
+							className={
+								imageId ? `wp-image-${ imageId }` : undefined
+							}
+							src={ imageUrl }
+							alt={ imageAlt }
+						/>
+						{ isBlobURL( imageUrl ) && <Spinner /> }
+					</span>
+				) }
 				<span className="our-team__person">
 					<RichText
 						tagName="span"
 						allowedFormats={ [] }
 						value={ name }
-						className="our-team__name our-team__input"
+						className="our-team__name"
 						onChange={ ( val ) => setAttributes( { name: val } ) }
 						placeholder={ __( 'Name', 'our-team-block' ) }
 					/>
 					<RichText
 						tagName="span"
 						allowedFormats={ [] }
-						className="our-team__position our-team__input"
+						className="our-team__position"
 						value={ position }
 						onChange={ ( val ) =>
 							setAttributes( { position: val } )
