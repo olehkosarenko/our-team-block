@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "wp-app/our-team-block-team-member",
+	"version": "0.1.0",
+	"title": "Team Member",
+	"parent": [ "wp-app/our-team-block-team-list" ],
+	"icon": "admin-users",
+	"description": "Our Team Member: Image, Name and Position",
+	"supports": {
+		"html": false,
+		"reusable": false
+	},
+	"textdomain": "our-team-block",
+	"attributes": {
+		"url": {
+			"type": "string",
+			"source": "attribute",
+			"attribute": "href",
+			"selector": ".our-team__url"
+		},
+		"name": {
+			"type": "string",
+			"source": "html",
+			"selector": ".our-team__name"
+		},
+		"position": {
+			"type": "string",
+			"source": "html",
+			"selector": ".our-team__position"
+		},
+		"imageId": {
+			"type": "number"
+		},
+		"imageUrl": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "img",
+			"attribute": "src"
+		},
+		"imageAlt": {
+			"type": "string",
+			"source": "attribute",
+			"selector": "img",
+			"attribute": "alt",
+			"default": ""
+		}
+	}
+}

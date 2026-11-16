@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'init', 'wp_app_our_team_block_init' );
 
 /**
- * Register the Our Team block from its block.json in the build directory
+ * Register the Our Team block and its child blocks from their block.json files in the build directory
  *
  * When the block has not been built yet, show administrators how to build it instead.
  *
@@ -36,6 +36,10 @@ function wp_app_our_team_block_init() {
 	}
 
 	register_block_type( __DIR__ . '/build' );
+
+	foreach ( [ 'column', 'text', 'team-list', 'team-member' ] as $child ) {
+		register_block_type( __DIR__ . '/build/' . $child );
+	}
 }
 
 /**
