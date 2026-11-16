@@ -35,6 +35,22 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	return (
 		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Link', 'our-team-block' ) }>
+					<TextControl
+						type="url"
+						label={ __( 'Link URL', 'our-team-block' ) }
+						help={ __(
+							'Leave empty to show the team member without a link.',
+							'our-team-block'
+						) }
+						value={ url || '' }
+						onChange={ ( val ) =>
+							setAttributes( { url: val.trim() || undefined } )
+						}
+					/>
+				</PanelBody>
+			</InspectorControls>
 			{ imageUrl && ! isBlobURL( imageUrl ) && (
 				<InspectorControls>
 					<PanelBody
@@ -81,13 +97,6 @@ export default function Edit( { attributes, setAttributes } ) {
 						: 'our-team__item our-team__item--no-image',
 				} ) }
 			>
-				<RichText
-					value={ url }
-					allowedFormats={ [] }
-					className="our-team__url our-team__input"
-					onChange={ ( val ) => setAttributes( { url: val } ) }
-					placeholder={ __( 'URL', 'our-team-block' ) }
-				/>
 				<span className="our-team__image">
 					{ imageUrl && (
 						<div
