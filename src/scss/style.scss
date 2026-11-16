@@ -186,7 +186,6 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						@include media-breakpoint-up(lg) {
 							bottom: 36px;
 							opacity: 0;
-							visibility: hidden;
 						}
 
 						.our-team__name {
@@ -221,7 +220,8 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						}
 					}
 
-					&:hover {
+					&:hover,
+					&:focus-within {
 
 						.our-team__image {
 
@@ -240,12 +240,18 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 						.our-team__person {
 							transition: 0.5s;
 							opacity: 1;
-							visibility: visible;
 						}
 
 					}
 				}
 			}
 		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	body:not(.wp-admin) .wp-block-wp-app-our-team-block .our-team__item * {
+		transition: none !important;
 	}
 }
