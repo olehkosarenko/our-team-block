@@ -135,6 +135,24 @@
 						}
 					}
 
+					// The hexagon cuts off the browser focus outline and the photo
+					// covers it, so the focused link gets its own ring on top.
+					.our-team__url:focus-visible {
+						outline: none;
+
+						// A white hexagon frame: the outer outline of the card minus
+						// a slightly smaller hexagon inside it.
+						&::before {
+							content: "";
+							position: absolute;
+							inset: 0;
+							z-index: 3;
+							background: $color-white;
+							clip-path: polygon(evenodd, 50% 0%, 100% 30%, 100% 71%, 50% 100%, 0% 71%, 0% 30%, 50% 0%, 50% 3%, 3% 31.5%, 3% 69.5%, 50% 97%, 97% 69.5%, 97% 31.5%, 50% 3%);
+							pointer-events: none;
+						}
+					}
+
 					.our-team__image {
 						display: block;
 
