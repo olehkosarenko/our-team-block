@@ -60,9 +60,9 @@
 }
 
 // In the editor the name and the position are always visible so they can be
-// edited in place. The editor canvas is an iframe, so the site styles apply in
-// it as well; the html element makes these rules win over the site ones.
-html body.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
+// edited in place. The editor-styles-wrapper class makes these rules win over
+// the site ones.
+.editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
 
 	// The next row of the honeycomb covers the lower third of a card, so the
 	// text sits above it.

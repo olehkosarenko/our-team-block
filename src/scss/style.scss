@@ -2,7 +2,9 @@
 @use "./parts/mixins" as *;
 @use "./parts/grid" as *;
 
-body:not(.wp-admin) .wp-block-wp-app-our-team-block {
+// The same rules apply on the site and in the editor; editor-only changes are
+// in editor.scss.
+.wp-block-wp-app-our-team-block {
 
 	.our-team__container {
 		position: relative;
@@ -251,7 +253,7 @@ body:not(.wp-admin) .wp-block-wp-app-our-team-block {
 
 @media (prefers-reduced-motion: reduce) {
 
-	body:not(.wp-admin) .wp-block-wp-app-our-team-block .our-team__item * {
+	.wp-block-wp-app-our-team-block .our-team__item * {
 		transition: none !important;
 	}
 }

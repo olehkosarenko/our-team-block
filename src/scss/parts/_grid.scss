@@ -1,7 +1,7 @@
 @use "./variables" as *;
 @use "./mixins" as *;
 
-body:not(.wp-admin) {
+.wp-block-wp-app-our-team-block {
 
 	.our-team__container {
 		width: 100%;
@@ -27,7 +27,7 @@ body:not(.wp-admin) {
 		}
 	}
 
-	.our-team__columns-1 {
+	&.our-team__columns-1 {
 
 		.our-team__container {
 
