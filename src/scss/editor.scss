@@ -64,10 +64,7 @@
 // the site ones.
 .editor-styles-wrapper .wp-block-wp-app-our-team-block .our-team__container .our-team .our-team__list .our-team__item {
 
-	// The next row of the honeycomb covers the lower third of a card, so the
-	// text sits above it.
 	.our-team__person {
-		bottom: 32%;
 		opacity: 1;
 		visibility: visible;
 	}
@@ -91,7 +88,6 @@
 	.our-team__image {
 
 		&::after {
-			height: 75%;
 			opacity: 1;
 			background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, $color-black 100%);
 		}
