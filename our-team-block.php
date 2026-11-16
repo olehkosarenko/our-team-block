@@ -5,7 +5,7 @@
  * Description:       Our Team Block is a custom Gutenberg block created for adding team members to a page.
  * Requires at least: 6.6
  * Requires PHP:      7.4
- * Version:           0.1.0
+ * Version:           1.0.0
  * Author:            Oleh Kosarenko
  * Author URI:        https://github.com/olehkosarenko
  * License:           GPL-2.0-or-later
