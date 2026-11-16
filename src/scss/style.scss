@@ -178,7 +178,7 @@
 						display: block;
 						text-align: center;
 						width: 100%;
-						padding: 0 10%;
+						padding: 0 6%;
 						box-sizing: border-box;
 						z-index: 2;
 						transition: 0.5s;
@@ -191,8 +191,18 @@
 							opacity: 0;
 						}
 
+						// Long names and positions wrap inside the card and are cut
+						// after two lines; the full text stays in the markup.
+						.our-team__name,
+						.our-team__position {
+							display: -webkit-box;
+							-webkit-box-orient: vertical;
+							-webkit-line-clamp: 2;
+							overflow: hidden;
+							overflow-wrap: anywhere;
+						}
+
 						.our-team__name {
-							display: block;
 							font-family: $font-family-secondary;
 							font-style: normal;
 							font-weight: 500;
@@ -208,7 +218,6 @@
 						}
 
 						.our-team__position {
-							display: block;
 							font-family: $font-family-secondary;
 							font-style: normal;
 							font-weight: 400;
