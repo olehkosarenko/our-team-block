@@ -45,6 +45,16 @@
 			flex-wrap: wrap;
 			width: 100%;
 
+			// In the editor the columns sit in an extra block list element. As a
+			// flex item it would shrink to its content, and the team list, which
+			// is a size container, has no content width of its own, so the list
+			// would collapse. The element takes the full row instead.
+			> .block-editor-inner-blocks {
+				flex: 1 1 100%;
+				width: 100%;
+				min-width: 0;
+			}
+
 			@include media-breakpoint-up(xl) {
 				flex-wrap: wrap;
 				width: 100%;

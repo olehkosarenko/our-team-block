@@ -17,7 +17,7 @@ A new block starts with two columns: the first one holds a Text block, the secon
 
 To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel.
 
-On the site, team members are shown as hexagons. From the `lg` breakpoint (992px) the photos are grayscale, and the name and position appear on hover and on keyboard focus. A member without a photo is shown as a grey card with the name and position always visible.
+On the site, team members are shown as hexagons. The layout follows the width the block gets, not the screen: the two columns sit side by side when the block is at least 1065px wide, and the hexagons shrink to fit narrow columns. The block supports wide and full alignment. When the team list is at least 420px wide, linked members with a photo are grayscale on devices with a mouse, and the name and position appear on hover and on keyboard focus. On touch screens, and for members without a link or without a photo, the name and position are always visible.
 
 ## Requirements
 

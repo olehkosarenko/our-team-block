@@ -9,22 +9,23 @@
 	.our-team__container {
 		position: relative;
 
+		// When the columns are stacked, the team list comes first.
 		.our-team__col {
 
 			&:nth-child(1) {
+				order: 2;
 
-				@include media-breakpoint-down(xl) {
-					order: 2;
+				@include container-up(our-team, $container-two-columns) {
+					order: 0;
 				}
-
 			}
 
 			&:nth-child(2) {
+				order: 1;
 
-				@include media-breakpoint-down(xl) {
-					order: 1;
+				@include container-up(our-team, $container-two-columns) {
+					order: 0;
 				}
-
 			}
 		}
 
@@ -43,12 +44,12 @@
 				max-width: 100%;
 				margin-top: 50px;
 
-				@include media-breakpoint-up(lg) {
+				@include container-up(our-team, $container-large-text) {
 					font-size: 64px;
 					line-height: 72px;
 				}
 
-				@include media-breakpoint-up(xl) {
+				@include container-up(our-team, $container-two-columns) {
 					margin-top: 100px;
 				}
 			}
@@ -66,73 +67,65 @@
 				max-width: 100%;
 				margin-top: 16px;
 
-				@include media-breakpoint-up(lg) {
+				@include container-up(our-team, $container-large-text) {
 					font-size: 16px;
 					line-height: 18px;
 					margin-top: 33px;
 				}
 			}
 
+			// The honeycomb scales with the width of the list: a card is 2/5 of
+			// it, up to the full size of 210px. The list is a container, so the
+			// cards measure it instead of the viewport.
 			.our-team__list {
+				container: our-team-list / inline-size;
 				display: flex;
 				justify-content: start;
 				flex-wrap: wrap;
 				margin: 50px auto 0 auto;
-				width: 315px;
-
-				@include media-breakpoint-up(lg) {
-					width: 525px;
-				}
+				width: 100%;
+				max-width: $team-list-max-width;
+				box-sizing: border-box;
 
 				.our-team__item {
+					--our-team-card-width: min(#{$team-card-max-width}, 40cqi);
+					--our-team-card-height: calc(var(--our-team-card-width) * 1.095);
+
 					position: relative;
 					clip-path: polygon(50% 0%, 100.5% 30%, 100.5% 71%, 50% 100%, 0% 71%, 0% 30%);
 					overflow: hidden;
-					cursor: pointer;
-					width: 126px;
-					height: 138px;
+					width: var(--our-team-card-width);
+					height: var(--our-team-card-height);
 					display: block;
 					text-decoration: none;
 
-					@include media-breakpoint-up(lg) {
-						width: 210px;
-						height: 230px;
-					}
-
 					&.our-team__item--no-image {
 						background-color: $color-placeholder;
-
-						.our-team__person {
-							opacity: 1;
-						}
 					}
 
+					// Every second row is shifted by half a card, and the rows
+					// overlap by the slanted edge of the hexagon.
 					&:nth-child(4n+3) {
-						margin-left: 63px;
-
-						@include media-breakpoint-up(lg) {
-							margin-left: 105px;
-						}
+						margin-left: calc(var(--our-team-card-width) / 2);
 					}
 
 					&:nth-child(4n+1),
 					&:nth-child(4n+2),
 					&:nth-child(4n+3),
 					&:nth-child(4n+4) {
-						margin-top: -42px;
-
-						@include media-breakpoint-up(lg) {
-							margin-top: -69px;
-						}
+						margin-top: calc(var(--our-team-card-height) * -0.3);
 					}
 
 					&:nth-child(1),
 					&:nth-child(2) {
 						margin-top: 0;
+					}
 
-						@include media-breakpoint-up(lg) {
-							margin-top: 0;
-						}
+					.our-team__url,
+					.our-team__card {
+						display: block;
+						width: 100%;
+						height: 100%;
 					}
 
 					// The hexagon cuts off the browser focus outline and the photo
@@ -155,6 +148,8 @@
 
 					.our-team__image {
 						display: block;
+						width: 100%;
+						height: 100%;
 
 						&::after {
 							content: "";
@@ -168,26 +163,14 @@
 							opacity: 1;
 							transition: opacity 0.5s;
 							display: block;
-
-							@include media-breakpoint-up(lg) {
-								background: rgb(255, 255, 255, 0);
-								opacity: 0;
-							}
 						}
 
 						img {
+							display: block;
 							width: 100%;
 							height: 100%;
-							min-width: 126px;
-							min-height: 138px;
 							object-fit: cover;
-
-							@include media-breakpoint-up(lg) {
-								min-width: 210px;
-								min-height: 230px;
-								filter: grayscale(100%);
-								transition: transform 0.5s, filter 0.5s;
-							}
+							transition: transform 0.5s, filter 0.5s;
 						}
 					}
 
@@ -199,15 +182,11 @@
 						padding: 0 6%;
 						box-sizing: border-box;
 						z-index: 2;
-						transition: 0.5s;
+						transition: opacity 0.5s;
 
 						// The next row of the honeycomb covers the lower third of a
 						// card, so the text sits above it.
 						bottom: 32%;
-
-						@include media-breakpoint-up(lg) {
-							opacity: 0;
-						}
 
 						// Long names and positions wrap inside the card and are cut
 						// after two lines; the full text stays in the markup.
@@ -229,7 +208,7 @@
 							font-size: 12px;
 							line-height: 14px;
 
-							@include media-breakpoint-up(lg) {
+							@include container-up(our-team-list, $container-large-cards) {
 								font-size: 16px;
 								line-height: 19px;
 							}
@@ -243,35 +222,54 @@
 							font-size: 10px;
 							line-height: 12px;
 
-							@include media-breakpoint-up(lg) {
+							@include container-up(our-team-list, $container-large-cards) {
 								font-size: 12px;
 								line-height: 15px;
 							}
 						}
 					}
 
-					&:hover,
-					&:focus-within {
+					// Large linked cards with a photo, on devices with a mouse, show a
+					// grey photo and reveal the name and position on hover or
+					// keyboard focus. On touch screens, on cards without a link and
+					// on cards without a photo the name and position are always
+					// visible.
+					@media (hover: hover) {
 
-						.our-team__image {
+						@include container-up(our-team-list, $container-large-cards) {
 
-							&::after {
-								background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10.28%, $color-black 100%);
-								opacity: 1;
-							}
+							&:not(.our-team__item--no-image) .our-team__url {
 
-							img {
-								transform: scale(1.1);
-								filter: grayscale(0%);
-								transition: transform 0.5s, filter 0.5s;
+								.our-team__image::after {
+									opacity: 0;
+								}
+
+								.our-team__image img {
+									filter: grayscale(100%);
+								}
+
+								.our-team__person {
+									opacity: 0;
+								}
+
+								&:hover,
+								&:focus-visible {
+
+									.our-team__image::after {
+										opacity: 1;
+									}
+
+									.our-team__image img {
+										transform: scale(1.1);
+										filter: grayscale(0%);
+									}
+
+									.our-team__person {
+										opacity: 1;
+									}
+								}
 							}
 						}
-
-						.our-team__person {
-							transition: 0.5s;
-							opacity: 1;
-						}
-
 					}
 				}
 			}
@@ -283,5 +281,9 @@
 
 	.wp-block-wp-app-our-team-block .our-team__item * {
 		transition: none !important;
+	}
+
+	.wp-block-wp-app-our-team-block .our-team__item .our-team__image img {
+		transform: none !important;
 	}
 }
