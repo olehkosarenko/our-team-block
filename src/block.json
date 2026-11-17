@@ -6,7 +6,8 @@
 	"title": "Our Team",
 	"category": "widgets",
 	"icon": "groups",
-	"description": "Our Team adds team members to a page.",
+	"description": "Shows a title, a description and your team members as hexagons, each with a photo, a name, a position and an optional link.",
+	"keywords": [ "team", "staff", "people", "members", "about" ],
 	"example": {},
 	"supports": {
 		"html": false,

@@ -8,7 +8,7 @@
 
 **Our Team** (`wp-app/our-team-block`) is the block you insert. It is built from nested blocks that can only be used inside it:
 
-- **Columns** (`wp-app/our-team-block-column`) - a column of the layout
+- **Column** (`wp-app/our-team-block-column`) - a column of the layout
   - **Text** (`wp-app/our-team-block-text`) - a title (`h2`) and a description
   - **Team List** (`wp-app/our-team-block-team-list`) - the list of team members
     - **Team Member** (`wp-app/our-team-block-team-member`) - a photo from the Media Library or a URL, a name, a position and a link
