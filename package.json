@@ -22,10 +22,14 @@
 		"start": "wp-scripts start",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:css": "wp-scripts lint-style \"src/**/*.{css,scss}\"",
-		"format": "wp-scripts format src"
+		"format": "wp-scripts format src",
+		"test": "wp-scripts test-unit-js"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^37.1.0"
+		"@wordpress/scripts": "^37.1.0",
+		"jsdom": "^31.0.1",
+		"vite": "^8.3.8",
+		"vitest": "^5.1.0"
 	},
 	"dependencies": {
 		"@wordpress/blob": "^5.1.0",

@@ -66,12 +66,19 @@ nvm use
 npm ci
 npm run build      # production build
 npm start          # rebuild on every change
+npm test           # block markup tests
 npm run lint:js    # WordPress JavaScript Coding Standards
 npm run lint:css   # WordPress CSS Coding Standards
 npm run format     # format the code with the WordPress Prettier config
 ```
 
 The styles are written in SCSS: `src/scss/style.scss` is loaded on the site and in the editor, `src/scss/editor.scss` only in the editor.
+
+### Block tests
+
+`src/test/fixtures` holds the markup each block saves, for example a team member with and without a link or a photo. The tests in `src/test` parse every fixture with the WordPress block parser and check that each block is valid and that saving it again gives exactly the same markup. They run with [Vitest](https://vitest.dev/) through `npm test`, without WordPress.
+
+If a change to a `save.js` makes these tests fail, posts that already use the block would show "This block contains unexpected or invalid content" in the editor. Either keep the saved markup unchanged or add a block deprecation, and only then update the fixtures.
 
 ### PHP coding standards
 
@@ -83,7 +90,7 @@ composer lint       # check the code with PHPCS
 composer lint:fix   # fix what can be fixed automatically with PHPCBF
 ```
 
-GitHub Actions runs PHPCS, the linters and the build on every pull request and on pushes to `main`.
+GitHub Actions runs PHPCS, the linters, the block tests and the build on every pull request and on pushes to `main`.
 
 ### Releases
 
