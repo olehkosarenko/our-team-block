@@ -6,19 +6,27 @@ on:
       - 'v*.*.*'
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  release:
-    name: Build and publish
+  verify:
+    name: Verify the tag
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
-          cache: npm
+
+      - name: Check that the tagged commit is on main
+        run: |
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/main; then
+            echo "Tag $GITHUB_REF_NAME points to $GITHUB_SHA, which is not on main."
+            exit 1
+          fi
 
       - name: Check that the tag matches the plugin version
         run: |
@@ -42,29 +50,37 @@ jobs:
           done
           exit $status
 
-      - name: Build the block
+      - name: Check that the changelog has a section for the version
         run: |
-          npm ci
-          npm run build
+          version="${GITHUB_REF_NAME#v}"
+          if ! grep -qF "## [$version]" CHANGELOG.md; then
+            echo "CHANGELOG.md has no section for $version."
+            exit 1
+          fi
 
-      - name: Package the plugin
-        run: |
-          mkdir -p dist/our-team-block
-          cp -R our-team-block.php LICENSE readme.txt build dist/our-team-block/
-          cd dist
-          zip -rq our-team-block.zip our-team-block
+  checks:
+    name: Checks
+    needs: verify
+    uses: ./.github/workflows/checks.yml
 
-      - name: Check the contents of the zip
-        run: |
-          entries="$(unzip -Z1 dist/our-team-block.zip)"
-          status=0
-          for file in our-team-block.php readme.txt LICENSE build/block.json build/index.js build/index.asset.php build/column/block.json build/text/block.json build/team-list/block.json build/team-member/block.json; do
-            if ! printf '%s\n' "$entries" | grep -qx "our-team-block/$file"; then
-              echo "our-team-block.zip is missing $file."
-              status=1
-            fi
-          done
-          exit $status
+  build:
+    name: Build
+    needs: checks
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: our-team-block-zip
+          path: dist
 
       - name: Extract the release notes from the changelog
         run: |
