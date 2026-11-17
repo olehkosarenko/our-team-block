@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Added
+
+- Block markup tests with Vitest (`npm test`): the markup each block saves is checked against the WordPress block parser and validator in GitHub Actions.
+
 ### Changed
 
 - The plugin header has an `Update URI`, so WordPress no longer looks for updates of this plugin on WordPress.org, where a plugin with the same slug could offer an unrelated update.
