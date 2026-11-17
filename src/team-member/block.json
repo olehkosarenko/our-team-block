@@ -6,7 +6,7 @@
 	"title": "Team Member",
 	"parent": [ "wp-app/our-team-block-team-list" ],
 	"icon": "admin-users",
-	"description": "Our Team Member: Image, Name and Position",
+	"description": "A team member with a photo, a name, a position and an optional link.",
 	"supports": {
 		"html": false,
 		"reusable": false

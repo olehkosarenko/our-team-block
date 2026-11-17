@@ -6,7 +6,7 @@
 	"title": "Text",
 	"parent": [ "wp-app/our-team-block-column" ],
 	"icon": "text",
-	"description": "Our Team Text: Title and Description",
+	"description": "The title and the description of the Our Team block.",
 	"supports": {
 		"html": false,
 		"reusable": false

@@ -6,7 +6,7 @@
 	"title": "Team List",
 	"parent": [ "wp-app/our-team-block-column" ],
 	"icon": "admin-users",
-	"description": "Our Team List: Adds a team member to the team list.",
+	"description": "The team members of the Our Team block, shown as a honeycomb of hexagons.",
 	"supports": {
 		"html": false,
 		"reusable": false

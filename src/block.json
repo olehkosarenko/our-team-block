@@ -6,8 +6,51 @@
 	"title": "Our Team",
 	"category": "widgets",
 	"icon": "groups",
-	"description": "Our Team adds team members to a page.",
-	"example": {},
+	"description": "Shows a title, a description and your team members as hexagons, each with a photo, a name, a position and an optional link.",
+	"keywords": [ "team", "staff", "people", "members", "about" ],
+	"example": {
+		"attributes": { "columns": 2 },
+		"innerBlocks": [
+			{
+				"name": "wp-app/our-team-block-column",
+				"innerBlocks": [
+					{
+						"name": "wp-app/our-team-block-text",
+						"attributes": {
+							"title": "Our team",
+							"description": "The people behind the project."
+						}
+					}
+				]
+			},
+			{
+				"name": "wp-app/our-team-block-column",
+				"innerBlocks": [
+					{
+						"name": "wp-app/our-team-block-team-list",
+						"innerBlocks": [
+							{
+								"name": "wp-app/our-team-block-team-member",
+								"attributes": { "name": "Ann Lee", "position": "CEO" }
+							},
+							{
+								"name": "wp-app/our-team-block-team-member",
+								"attributes": { "name": "Bob Stone", "position": "Developer" }
+							},
+							{
+								"name": "wp-app/our-team-block-team-member",
+								"attributes": { "name": "Cleo Park", "position": "Designer" }
+							},
+							{
+								"name": "wp-app/our-team-block-team-member",
+								"attributes": { "name": "Dan Ford", "position": "Support" }
+							}
+						]
+					}
+				]
+			}
+		]
+	},
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ]

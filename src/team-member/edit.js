@@ -18,10 +18,12 @@ import {
 	ToolbarButton,
 	PanelBody,
 	TextControl,
+	Notice,
 } from '@wordpress/components';
 import PropTypes from 'prop-types';
 import { getPhotoUrl } from './image';
 import { normalizeLink } from './link';
+import { hasAccessibleName } from './accessible-name';
 
 // Name and position are saved as HTML by the RichText fields on the card.
 // The sidebar fields show them as plain text and store them escaped, so both
@@ -172,6 +174,14 @@ export default function Edit( { attributes, setAttributes } ) {
 						onChange={ onLinkChange }
 						onBlur={ () => setLinkDraft( undefined ) }
 					/>
+					{ url && ! hasAccessibleName( attributes ) && (
+						<Notice status="warning" isDismissible={ false }>
+							{ __(
+								'Screen readers announce this card only as "link". Add a name, a position or an alt text for the photo.',
+								'our-team-block'
+							) }
+						</Notice>
+					) }
 				</PanelBody>
 			</InspectorControls>
 			<BlockControls group="other">

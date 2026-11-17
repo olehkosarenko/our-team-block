@@ -3,10 +3,10 @@
 	"apiVersion": 3,
 	"name": "wp-app/our-team-block-column",
 	"version": "1.0.0",
-	"title": "Columns",
+	"title": "Column",
 	"parent": [ "wp-app/our-team-block" ],
 	"icon": "grid-view",
-	"description": "Our Team Column",
+	"description": "A column of the Our Team block. It holds the text or the team list.",
 	"supports": {
 		"html": false,
 		"reusable": false

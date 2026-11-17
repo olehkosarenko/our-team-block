@@ -279,7 +279,10 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-	.wp-block-wp-app-our-team-block .our-team__item * {
+	// The universal selector does not match pseudo-elements, so the gradient
+	// of the photo (::after) is listed as well.
+	.wp-block-wp-app-our-team-block .our-team__item *,
+	.wp-block-wp-app-our-team-block .our-team__item *::after {
 		transition: none !important;
 	}
 
