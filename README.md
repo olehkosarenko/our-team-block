@@ -15,7 +15,7 @@
 
 A new block starts with two columns: the first one holds a Text block, the second one a Team List with four team members. The **Columns** setting in the block sidebar switches the layout on the site between one and two columns.
 
-To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel.
+To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel. A link without a scheme, such as `example.com`, is saved with `https://` in front; links to a path or an anchor on the site (`/team`, `#ann`) are kept as they are, and only `http`, `https`, `mailto` and `tel` links are accepted. A photo from the Media Library is saved in its large size, and on the site WordPress serves a size that fits the card.
 
 On the site, team members are shown as hexagons. The layout follows the width the block gets, not the screen: with **Columns** set to 2 the columns sit side by side when the block is at least 640px wide, and the hexagons shrink to fit narrow columns. The block supports wide and full alignment, which gives the team list room for full size hexagons. On devices with a mouse, linked members with a photo are grayscale, and the name and position appear on hover and on keyboard focus. On touch screens, and for members without a link or without a photo, the name and position are always visible.
 
