@@ -1,6 +1,6 @@
 {
 	"name": "our-team-block",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"private": true,
 	"description": "Our Team Block is a custom Gutenberg block created for adding team members to a page.",
 	"author": "Oleh Kosarenko",
