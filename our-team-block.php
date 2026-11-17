@@ -43,6 +43,43 @@ function wp_app_our_team_block_init() {
 	}
 }
 
+add_filter( 'render_block_wp-app/our-team-block-team-member', 'wp_app_our_team_block_photo_sizes' );
+
+/**
+ * Tell the browser how wide a team member photo is shown
+ *
+ * WordPress adds srcset and sizes to photos from the Media Library. Without a
+ * sizes attribute it assumes the photo can be as wide as the screen, so the
+ * browser loads a far larger file than the card needs. A card is at most 210px
+ * wide. WordPress keeps an existing sizes attribute and only adds srcset; for
+ * lazy loaded images it puts "auto" in front, so the browser can use the real
+ * width. Only photos with a wp-image-<id> class get srcset from WordPress, so
+ * other photos are left alone. The saved block markup does not change.
+ *
+ * @param string $block_content Rendered team member block.
+ *
+ * @return string
+ */
+function wp_app_our_team_block_photo_sizes( $block_content ) {
+	if ( ! is_string( $block_content ) || false === strpos( $block_content, '<img' ) ) {
+		return $block_content;
+	}
+
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+	if ( ! $tags->next_tag( [ 'tag_name' => 'img' ] ) || null !== $tags->get_attribute( 'sizes' ) ) {
+		return $block_content;
+	}
+
+	$class = $tags->get_attribute( 'class' );
+	if ( ! is_string( $class ) || ! preg_match( '/(^|\s)wp-image-\d+(\s|$)/', $class ) ) {
+		return $block_content;
+	}
+
+	$tags->set_attribute( 'sizes', '210px' );
+
+	return $tags->get_updated_html();
+}
+
 /**
  * Print an admin notice that the block has to be built before it can be used
  *
