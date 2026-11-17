@@ -1,6 +1,7 @@
 {
 	"name": "our-team-block",
 	"version": "1.0.0",
+	"private": true,
 	"description": "Our Team Block is a custom Gutenberg block created for adding team members to a page.",
 	"author": "Oleh Kosarenko",
 	"license": "GPL-2.0-or-later",
@@ -21,9 +22,7 @@
 		"start": "wp-scripts start",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:css": "wp-scripts lint-style \"src/**/*.{css,scss}\"",
-		"format": "wp-scripts format src",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip"
+		"format": "wp-scripts format src"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^37.1.0"

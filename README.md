@@ -87,7 +87,9 @@ GitHub Actions runs PHPCS, the linters and the build on every pull request and o
 
 ### Releases
 
-Pushing a version tag such as `v1.0.0` builds `our-team-block.zip` and publishes it as a GitHub release, with the notes from [CHANGELOG.md](CHANGELOG.md). The tag must match the version in `our-team-block.php`, `readme.txt`, `package.json` and the `block.json` files.
+Every pull request also builds the plugin zip; it is attached to the workflow run as the `our-team-block-zip` artifact.
+
+To publish a release, merge the version bump to `main` and push a tag such as `v1.0.0` that points to a commit on `main`. The Release workflow then checks the tag, runs all the checks, builds `our-team-block.zip` and publishes it as a GitHub release, with the notes from [CHANGELOG.md](CHANGELOG.md). It stops before publishing if the tagged commit is not on `main`, the tag does not match the version in `our-team-block.php`, `readme.txt`, `package.json` and the `block.json` files, or the changelog has no section for the version.
 
 ## License
 

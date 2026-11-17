@@ -10,6 +10,7 @@
  * Author URI:        https://github.com/olehkosarenko
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI:        https://github.com/olehkosarenko/our-team-block
  * Text Domain:       our-team-block
  *
  * @package WpApp
