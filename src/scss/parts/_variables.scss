@@ -11,15 +11,6 @@ $color-placeholder: #595959;
 // Placeholder text of the name and position fields in the editor.
 $color-placeholder-text: #e0e0e0;
 
-$grid-breakpoints: (
-	xs: 0,
-	sm: 576px,
-	md: 768px,
-	lg: 992px,
-	xl: 1200px,
-	xxl: 1400px
-) !default;
-
 // Container widths, measured on the block and on the team list instead of the
 // viewport, so the layout follows the space the block really gets.
 // Both columns side by side, as set by the Columns setting. From this width
