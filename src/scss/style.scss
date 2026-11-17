@@ -229,14 +229,14 @@
 						}
 					}
 
-					// Large linked cards with a photo, on devices with a mouse, show a
+					// Linked cards with a photo, on devices with a mouse, show a
 					// grey photo and reveal the name and position on hover or
 					// keyboard focus. On touch screens, on cards without a link and
 					// on cards without a photo the name and position are always
 					// visible.
 					@media (hover: hover) {
 
-						@include container-up(our-team-list, $container-large-cards) {
+						@include container-up(our-team-list, $container-hover-cards) {
 
 							&:not(.our-team__item--no-image) .our-team__url {
 
