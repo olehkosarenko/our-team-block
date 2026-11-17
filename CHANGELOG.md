@@ -9,10 +9,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ### Added
 
 - Block markup tests with Vitest (`npm test`): the markup each block saves is checked against the WordPress block parser and validator in GitHub Actions.
+- Wide and full alignment for the block.
 
 ### Changed
 
 - The plugin header has an `Update URI`, so WordPress no longer looks for updates of this plugin on WordPress.org, where a plugin with the same slug could offer an unrelated update.
+
+### Fixed
+
+- The team list had a fixed width of 525px from 992px of screen width, so in a narrow content column, such as the one of Twenty Twenty-Five, it overflowed its column. The layout now follows the width of the block and of the team list (CSS container queries) instead of the screen, and the hexagons shrink to fit.
+- When the block was narrower than 315px, the team list was wider than the block and caused horizontal scrolling on small phones, for example 320px wide.
+- From 992px the name and position were hidden until hover, so they could not be seen on touch screens or for members without a link, which also showed a pointer cursor. They are now hidden only for linked members with a photo on devices with a mouse.
 
 ## [1.0.0] - 2026-11-16
 

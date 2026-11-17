@@ -17,7 +17,7 @@ Our Team Block adds the **Our Team** block to the block editor. A new block star
 * Each team member has a photo from the Media Library or a URL, a name, a position and an optional link.
 * The **Columns** setting in the block sidebar switches the layout on the site between one and two columns.
 * To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel.
-* On the site, team members are shown as hexagons. From 992px wide the photos are grayscale, and the name and position appear on hover and on keyboard focus. A member without a photo is shown as a grey card with the name and position always visible.
+* On the site, team members are shown as hexagons that adapt to the width of the block, with wide and full alignment. With a mouse, linked members are grayscale and show the name and position on hover and on keyboard focus; on touch screens, and for members without a link or a photo, the name and position are always visible.
 
 == Installation ==
 
