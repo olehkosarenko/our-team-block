@@ -1,0 +1,57 @@
+name: Build
+
+# Builds the plugin zip and uploads it as the our-team-block-zip artifact.
+# The Lint workflow runs it on pull requests, the Release workflow publishes its zip.
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build the plugin zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Build the block
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package the plugin
+        run: |
+          mkdir -p dist/our-team-block
+          cp -R our-team-block.php LICENSE readme.txt build dist/our-team-block/
+          cd dist
+          zip -rq our-team-block.zip our-team-block
+
+      - name: Check the zip contents
+        run: |
+          entries="$(unzip -Z1 dist/our-team-block.zip)"
+          status=0
+          for file in our-team-block.php readme.txt LICENSE build/block.json build/index.js build/index.asset.php build/column/block.json build/text/block.json build/team-list/block.json build/team-member/block.json; do
+            if ! printf '%s\n' "$entries" | grep -qx "our-team-block/$file"; then
+              echo "our-team-block.zip is missing $file."
+              status=1
+            fi
+          done
+          for forbidden in our-team-block/src/ our-team-block/node_modules/ our-team-block/vendor/; do
+            if printf '%s\n' "$entries" | grep -q "^$forbidden"; then
+              echo "our-team-block.zip must not contain $forbidden."
+              status=1
+            fi
+          done
+          exit $status
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: our-team-block-zip
+          path: dist/our-team-block.zip
+          if-no-files-found: error
