@@ -13,7 +13,7 @@
   - **Team List** (`wp-app/our-team-block-team-list`) - the list of team members
     - **Team Member** (`wp-app/our-team-block-team-member`) - a photo from the Media Library or a URL, a name, a position and a link
 
-A new block starts with two columns: the first one holds a Text block, the second one a Team List with four team members. The **Columns** setting in the block sidebar switches the layout on the site between one and two columns.
+A new block starts with two columns: the first one holds a Text block, the second one a Team List with four team members. The **Columns** setting in the block sidebar switches the layout between one and two columns, on the site and in the editor alike.
 
 To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel. A link without a scheme, such as `example.com`, is saved with `https://` in front; links to a path or an anchor on the site (`/team`, `#ann`) are kept as they are, and only `http`, `https`, `mailto` and `tel` links are accepted. A photo from the Media Library is saved in its large size, and on the site WordPress serves a size that fits the card.
 

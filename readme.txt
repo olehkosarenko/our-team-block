@@ -15,7 +15,7 @@ Adds an Our Team block that shows a title, a description and team members with a
 Our Team Block adds the **Our Team** block to the block editor. A new block starts with two columns: the first one holds a title and a description, the second one a list of four team members.
 
 * Each team member has a photo from the Media Library or a URL, a name, a position and an optional link.
-* The **Columns** setting in the block sidebar switches the layout on the site between one and two columns.
+* The **Columns** setting in the block sidebar switches the layout between one and two columns, on the site and in the editor alike.
 * To edit a team member, select it. The photo is chosen in the **Photo** panel of the block sidebar or with **Add photo** / **Replace** in the block toolbar. The name and position are typed on the card or in the sidebar, and the link is set in the **Link** panel. A link like example.com gets https:// in front, and only http, https, mailto and tel links are accepted.
 * On the site, team members are shown as hexagons that adapt to the width of the block, with wide and full alignment. With a mouse, linked members are grayscale and show the name and position on hover and on keyboard focus; on touch screens, and for members without a link or a photo, the name and position are always visible.
 

@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - From 992px the name and position were hidden until hover, so they could not be seen on touch screens or for members without a link, which also showed a pointer cursor. They are now hidden only for linked members with a photo on devices with a mouse.
 - A photo from the Media Library was saved in its full size, and WordPress told the browser it could be as wide as the screen, so a file of up to 2560px was loaded for a card of 210px. New photos are saved in the large size, and the photo is marked as at most 210px wide, so the browser picks a matching size from the srcset.
 - A link typed without a scheme, such as `example.com`, was saved as a link relative to the current page. It now gets `https://` in front, and links with other schemes than `http`, `https`, `mailto` and `tel`, such as `javascript:`, are not saved.
+- The editor always showed the columns one below the other, so the **Columns** setting had an effect only on the site. The editor now uses the same markup and layout as the site.
 
 ## [1.0.0] - 2026-11-16
 

@@ -1,5 +1,4 @@
 @use "./parts/variables" as *;
-@use "./parts/mixins" as *;
 
 .wp-block-wp-app-our-team-block {
 	box-sizing: border-box;
@@ -19,54 +18,6 @@
 			top: 0;
 			bottom: 0;
 			margin: auto;
-		}
-	}
-
-	// In the editor the team members sit in an extra block list element, so it
-	// gets the same flex layout as the list on the site.
-	.our-team__list .block-editor-inner-blocks .block-editor-block-list__layout {
-		width: 100%;
-		margin: 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: start;
-
-		> .block-editor-block-list__block {
-
-			&[data-type="wp-app/our-team-block-team-member"] {
-				box-sizing: border-box;
-			}
-		}
-	}
-
-	.our-team__container {
-
-		.our-team__row {
-			flex-wrap: wrap;
-			width: 100%;
-
-			// In the editor the columns sit in an extra block list element. As a
-			// flex item it would shrink to its content, and the team list, which
-			// is a size container, has no content width of its own, so the list
-			// would collapse. The element takes the full row instead.
-			> .block-editor-inner-blocks {
-				flex: 1 1 100%;
-				width: 100%;
-				min-width: 0;
-			}
-
-			@include media-breakpoint-up(xl) {
-				flex-wrap: wrap;
-				width: 100%;
-			}
-
-			.our-team__col {
-				width: 100%;
-
-				@include media-breakpoint-up(xl) {
-					width: 100%;
-				}
-			}
 		}
 	}
 }
