@@ -20,6 +20,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - The team list had a fixed width of 525px from 992px of screen width, so in a narrow content column, such as the one of Twenty Twenty-Five, it overflowed its column. The layout now follows the width of the block and of the team list (CSS container queries) instead of the screen, and the hexagons shrink to fit.
 - When the block was narrower than 315px, the team list was wider than the block and caused horizontal scrolling on small phones, for example 320px wide.
 - From 992px the name and position were hidden until hover, so they could not be seen on touch screens or for members without a link, which also showed a pointer cursor. They are now hidden only for linked members with a photo on devices with a mouse.
+- A photo from the Media Library was saved in its full size, and WordPress told the browser it could be as wide as the screen, so a file of up to 2560px was loaded for a card of 210px. New photos are saved in the large size, and the photo is marked as at most 210px wide, so the browser picks a matching size from the srcset.
+- A link typed without a scheme, such as `example.com`, was saved as a link relative to the current page. It now gets `https://` in front, and links with other schemes than `http`, `https`, `mailto` and `tel`, such as `javascript:`, are not saved.
 
 ## [1.0.0] - 2026-11-16
 
