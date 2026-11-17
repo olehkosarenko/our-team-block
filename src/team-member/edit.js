@@ -19,6 +19,7 @@ import {
 	TextControl,
 } from '@wordpress/components';
 import PropTypes from 'prop-types';
+import { getPhotoUrl } from './image';
 
 // Name and position are saved as HTML by the RichText fields on the card.
 // The sidebar fields show them as plain text and store them escaped, so both
@@ -39,7 +40,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	const onSelect = ( val ) => {
 		setAttributes( {
 			imageId: val.id,
-			imageUrl: val.url,
+			imageUrl: getPhotoUrl( val ),
 			imageAlt: val.alt,
 		} );
 	};
