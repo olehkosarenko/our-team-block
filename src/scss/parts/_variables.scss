@@ -19,3 +19,16 @@ $grid-breakpoints: (
 	xl: 1200px,
 	xxl: 1400px
 ) !default;
+
+// Container widths, measured on the block and on the team list instead of the
+// viewport, so the layout follows the space the block really gets.
+// Both columns side by side: two full size team lists (525px) and the gap.
+$container-two-columns: 1065px;
+// Large headings in the text column.
+$container-large-text: 992px;
+// Team list wide enough for the large card text and the hover effect.
+$container-large-cards: 420px;
+
+// Size of the team list at full size; a card is 2/5 of the list width.
+$team-list-max-width: 525px;
+$team-card-max-width: 210px;

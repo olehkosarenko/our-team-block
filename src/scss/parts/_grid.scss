@@ -2,6 +2,8 @@
 @use "./mixins" as *;
 
 .wp-block-wp-app-our-team-block {
+	// The columns follow the width of the block, not of the viewport.
+	container: our-team / inline-size;
 
 	.our-team__container {
 		width: 100%;
@@ -13,14 +15,15 @@
 			justify-content: space-between;
 			gap: 15px;
 
-			@include media-breakpoint-up(xl) {
+			@include container-up(our-team, $container-two-columns) {
 				flex-wrap: nowrap;
 			}
 
 			.our-team__col {
 				width: 100%;
+				min-width: 0;
 
-				@include media-breakpoint-up(xl) {
+				@include container-up(our-team, $container-two-columns) {
 					width: 50%;
 				}
 			}
@@ -37,9 +40,8 @@
 					flex-wrap: wrap;
 
 					.our-team__col {
-						width: 100%;
 
-						@include media-breakpoint-up(xl) {
+						@include container-up(our-team, $container-two-columns) {
 							width: 100%;
 						}
 					}
