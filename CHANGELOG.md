@@ -10,9 +10,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - Block markup tests with Vitest (`npm test`): the markup each block saves is checked against the WordPress block parser and validator in GitHub Actions.
 - Wide and full alignment for the block.
+- A preview with demo team members in the block inserter.
+- A warning in the block sidebar when a linked team member has no name, no position and no alt text, so screen readers would announce the card only as "link".
 
 ### Changed
 
+- Clearer titles and descriptions of the blocks in the inserter, and search keywords for the Our Team block. The nested Columns block is now called Column.
 - The plugin header has an `Update URI`, so WordPress no longer looks for updates of this plugin on WordPress.org, where a plugin with the same slug could offer an unrelated update.
 
 ### Fixed
@@ -23,6 +26,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - A photo from the Media Library was saved in its full size, and WordPress told the browser it could be as wide as the screen, so a file of up to 2560px was loaded for a card of 210px. New photos are saved in the large size, and the photo is marked as at most 210px wide, so the browser picks a matching size from the srcset.
 - A link typed without a scheme, such as `example.com`, was saved as a link relative to the current page. It now gets `https://` in front, and links with other schemes than `http`, `https`, `mailto` and `tel`, such as `javascript:`, are not saved.
 - The editor always showed the columns one below the other, so the **Columns** setting had an effect only on the site. The editor now uses the same markup and layout as the site.
+- With reduced motion turned on, the dark gradient on the photo still faded in over half a second; now it changes at once, like the rest of the card.
 
 ## [1.0.0] - 2026-11-16
 
