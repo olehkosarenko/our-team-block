@@ -229,40 +229,45 @@
 						}
 					}
 
-					// Large cards show a grey photo and reveal the name and position
-					// on hover or focus.
-					@include container-up(our-team-list, $container-large-cards) {
-						cursor: pointer;
+					// Large linked cards with a photo, on devices with a mouse, show a
+					// grey photo and reveal the name and position on hover or
+					// keyboard focus. On touch screens, on cards without a link and
+					// on cards without a photo the name and position are always
+					// visible.
+					@media (hover: hover) {
 
-						&:not(.our-team__item--no-image) {
+						@include container-up(our-team-list, $container-large-cards) {
 
-							.our-team__image::after {
-								opacity: 0;
-							}
+							&:not(.our-team__item--no-image) .our-team__url {
 
-							.our-team__image img {
-								filter: grayscale(100%);
-							}
+								.our-team__image::after {
+									opacity: 0;
+								}
 
-							.our-team__person {
-								opacity: 0;
-							}
-						}
+								.our-team__image img {
+									filter: grayscale(100%);
+								}
 
-						&:hover,
-						&:focus-within {
+								.our-team__person {
+									opacity: 0;
+								}
 
-							.our-team__image::after {
-								opacity: 1;
-							}
+								&:hover,
+								&:focus-visible {
 
-							.our-team__image img {
-								transform: scale(1.1);
-								filter: grayscale(0%);
-							}
+									.our-team__image::after {
+										opacity: 1;
+									}
 
-							.our-team__person {
-								opacity: 1;
+									.our-team__image img {
+										transform: scale(1.1);
+										filter: grayscale(0%);
+									}
+
+									.our-team__person {
+										opacity: 1;
+									}
+								}
 							}
 						}
 					}
@@ -276,5 +281,9 @@
 
 	.wp-block-wp-app-our-team-block .our-team__item * {
 		transition: none !important;
+	}
+
+	.wp-block-wp-app-our-team-block .our-team__item .our-team__image img {
+		transform: none !important;
 	}
 }
