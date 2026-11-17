@@ -7,6 +7,7 @@ import {
 	MediaUploadCheck,
 	InspectorControls,
 } from '@wordpress/block-editor';
+import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
 import { escapeEditableHTML } from '@wordpress/escape-html';
@@ -20,6 +21,7 @@ import {
 } from '@wordpress/components';
 import PropTypes from 'prop-types';
 import { getPhotoUrl } from './image';
+import { normalizeLink } from './link';
 
 // Name and position are saved as HTML by the RichText fields on the card.
 // The sidebar fields show them as plain text and store them escaped, so both
@@ -30,6 +32,17 @@ const hasTags = ( html ) => /<[a-z][^>]*>/i.test( html || '' );
 
 export default function Edit( { attributes, setAttributes } ) {
 	const { url, name, position, imageId, imageUrl, imageAlt } = attributes;
+	// The field shows the link as typed while it has focus, but the block
+	// always stores the normalized link, so nothing is lost when another block
+	// is selected before the field loses focus.
+	const [ linkDraft, setLinkDraft ] = useState();
+	const [ linkRejected, setLinkRejected ] = useState( false );
+	const onLinkChange = ( val ) => {
+		const { url: link, error } = normalizeLink( val );
+		setLinkDraft( val );
+		setLinkRejected( error );
+		setAttributes( { url: link } );
+	};
 	const onSelectURL = ( val ) => {
 		setAttributes( {
 			imageId: undefined,
@@ -144,14 +157,20 @@ export default function Edit( { attributes, setAttributes } ) {
 					<TextControl
 						type="url"
 						label={ __( 'Link URL', 'our-team-block' ) }
-						help={ __(
-							'Leave empty to show the team member without a link.',
-							'our-team-block'
-						) }
-						value={ url || '' }
-						onChange={ ( val ) =>
-							setAttributes( { url: val.trim() || undefined } )
+						help={
+							linkRejected
+								? __(
+										'This link was not saved. Use a web address, a mailto: or a tel: link.',
+										'our-team-block'
+									)
+								: __(
+										'Leave empty to show the team member without a link. An address like example.com gets https:// in front.',
+										'our-team-block'
+									)
 						}
+						value={ linkDraft ?? url ?? '' }
+						onChange={ onLinkChange }
+						onBlur={ () => setLinkDraft( undefined ) }
 					/>
 				</PanelBody>
 			</InspectorControls>
